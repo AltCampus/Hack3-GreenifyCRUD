@@ -149,9 +149,10 @@
     background-color: transparent;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
+    font-size: 20px;
   }
 
-   .btn:hover{
+  .btn:hover{
     background-color: rgba(0, 136, 0, 0.2);
   }
 
@@ -223,6 +224,73 @@
     text-align: center;
   }
 
-  .curve-chart{
-    margin:0 auto;
+  #curve-chart{
+
+  }
+
+  .chart-item{
+    margin: 0 auto;
+    border:2px solid #222;
+    height:450px;
+    display: inline-block;
+  }
+
+  .main-graph-section{
+    display: grid;
+    grid-gap:20px;
+    grid-template-columns: 50% 50%;
+    align-items: center;
+  }
+
+
+  /* Table formatting */
+
+    .table{
+    width: 100%;
+    text-align: left;
+  }
+
+  .table th, .table td{
+    padding:10px 10px;
+  }
+
+  .table thead th{
+    color:#000;
+  }
+
+  .table tbody tr:nth-child(odd){
+    background-color: #fafafa;
+  }
+
+
+  /* Table 1 formatting */
+
+  .table1 tbody tr{
+    border-bottom: 1px solid #ccc;
+  }
+
+   table.table1 tbody tr:first-child{
+    border-top:2px solid #ccc;
+  }
+
+  table.table1 tbody tr:last-child{
+    border-bottom:2px solid #ccc;
+  }
+
+  /* Table 2 formatting */
+
+  .table2 tbody td, .table2 thead th{
+    border:1px solid #ccc;
+  }
+
+  .header-section{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    justify-items:center;
+  }
+
+  .header-section button.btn{
+    border:1px solid white;
+    min-width: 150px !important;
   }
