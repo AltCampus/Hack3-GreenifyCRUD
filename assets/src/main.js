@@ -1,13 +1,15 @@
 var dataArray = [];
-var main = document.querySelector('main');
+var main = document.querySelector('.main-section');
+var table1 = document.querySelector('.table-1');
+var headerBtn = document.querySelector('.header-btn');
+var searchBox = document.querySelector('.search-box');
+headerBtn.style.display = 'none';
 
 var hightIncomeArray = [];
 var lowIncomeArray = [];
 var midIncomeArray = [];
 
-var showHightIncomeArray = [];
-var showLowIncomeArray = [];
-var showMidIncomeArray = [];
+
 
 function getData() {
 	console.log('emmpty array')
@@ -38,19 +40,13 @@ function getData() {
 getData();
 
 
-
-
-function showLowIncome() {
-	let lowIncomeArray = [];
-	dataArray.map(obj => {
-		lowIncomeArray.push(`<p>${obj.name}</p>`)
-	})
-	main.innerHTML= `<div>${lowIncomeArray}</div>`
-}
-
-function showHighIncome() {
+function addHighIncome(e) {
+	headerBtn.style.display = 'inline-block';
+	main.style.background= 'white';
+	e.preventDefault();
+	let tempArray = [];
 	hightIncomeArray.map(obj => {
-		showHightIncomeArray.push(`
+		tempArray.push(`
 		<tr class='row'>
 			<td>${obj.name}</td>
 			<td>${obj.region.value}</td>
@@ -58,18 +54,89 @@ function showHighIncome() {
 			<td>${obj.incomeLevel.value}</td>
 		</tr>`)
 	})
-	display(showHightIncomeArray);
+	display(tempArray, e);
 }
 
-function showMidIncome() {
-	let lowIncomeArray = [];
-	dataArray.map(obj => {
-		lowIncomeArray.push(`<p>${obj.name}</p>`)
+function addLowIncome(e) {
+	headerBtn.style.display = 'inline-block';
+	main.style.background= 'white';
+	e.preventDefault();
+	let tempArray = [];
+	lowIncomeArray.map(obj => {
+		tempArray.push(`
+		<tr class='row'>
+			<td>${obj.name}</td>
+			<td>${obj.region.value}</td>
+			<td>${obj.capital}</td>
+			<td>${obj.incomeLevel.value}</td>
+		</tr>`)
 	})
-	main.innerHTML= `<div>${lowIncomeArray}</div>`
+	display(tempArray, e);
 }
 
-function display(income) {
+function addMidIncome(e) {
+	headerBtn.style.display = 'inline-block';
+	main.style.background= 'white';
+	e.preventDefault();
+	let tempArray = [];
+	midIncomeArray.map(obj => {
+		tempArray.push(`
+		<tr class='row'>
+			<td>${obj.name}</td>
+			<td>${obj.region.value}</td>
+			<td>${obj.capital}</td>
+			<td>${obj.incomeLevel.value}</td>
+		</tr>`)
+	})
+	display(tempArray,e);
+}
+
+function addAllData(e) {
+	headerBtn.style.display = 'inline-block';
+	main.style.background= 'white';
+	e.preventDefault();
+	let tempArray = [];
+	dataArray.map(obj => {
+		tempArray.push(`
+		<tr class='row'>
+			<td>${obj.name}</td>
+			<td>${obj.region.value}</td>
+			<td>${obj.capital}</td>
+			<td>${obj.incomeLevel.value}</td>
+		</tr>`)
+	})
+	display(tempArray, e);
+}
+
+function searchData(e) {
+	if(e.key == 'Enter') {
+		let value = (e.target.value).toLowerCase();
+		e.target.value = '';
+		var tempArray = dataArray.filter(obj => ((obj.name).toLowerCase().includes(value)));
+		console.log(tempArray)
+		addSearchData(tempArray, e);
+	}
+}
+
+function addSearchData(array, e) {
+	headerBtn.style.display = 'inline-block';
+	main.style.background= 'white';
+	e.preventDefault();
+	let tempArray = [];
+	array.map(obj => {
+		tempArray.push(`
+		<tr class='row'>
+			<td>${obj.name}</td>
+			<td>${obj.region.value}</td>
+			<td>${obj.capital}</td>
+			<td>${obj.incomeLevel.value}</td>
+		</tr>`)
+	})
+	display(tempArray, e);
+}
+
+function display(income, event) {
+	event.preventDefault();
 	main.innerHTML = 
 	`<table>
 		<tr class='titles'>
@@ -86,5 +153,15 @@ function display(income) {
 
 
 
+var highIncomeBtn = document.querySelector('.high-income');
 var lowIncomeBtn = document.querySelector('.low-income');
-lowIncomeBtn.addEventListener('click', showHighIncome);
+var midIncomeBtn = document.querySelector('.mid-income');
+var all = document.querySelector('.all-income');
+
+highIncomeBtn.addEventListener('click', addHighIncome);
+lowIncomeBtn.addEventListener('click', addLowIncome);
+midIncomeBtn.addEventListener('click', addMidIncome);
+all.addEventListener('click', addAllData);
+searchBox.addEventListener('keydown', searchData)
+
+
